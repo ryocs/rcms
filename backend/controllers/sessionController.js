@@ -5,3 +5,7 @@ export const createSession = (user,callback) => {
         _id: user._id
     }, callback(user));
 }
+
+export const deleteSession = (user,callback) => {
+    Session.findOne({_id: user.id}).deleteOne(callback);
+}

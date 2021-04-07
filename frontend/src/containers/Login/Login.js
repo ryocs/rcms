@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Login.css";
@@ -8,6 +9,8 @@ export default function Login(){
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const history = useHistory();
+
   function validateForm() {
     return userName.length > 0 && password.length > 0;
   }
@@ -15,14 +18,14 @@ export default function Login(){
   function handleSubmit(event) {
     event.preventDefault();
     axios.post('/api/users/login', {userName: userName, password: password}).then((response) => {
-        if (response.data.message !== undefined) {
-            console.log(response.data.message);
-        } else {
-            localStorage.setItem("loggedIn", true);
+        if (response.data !== undefined) {
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", response.data.user);
+            history.pushState("/cms/dashboard");
+            //axios.get('/api/users',{headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}).then(next => {
+              //console.log(next);
+            //});
         }
-        axios.get('/api/users').then(next => {
-            console.log(next);
-        });
     });
   }
 

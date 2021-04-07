@@ -1,5 +1,5 @@
 import User from '../models/usersModel.js'
-import {createSession} from '../controllers/sessionController.js'
+import {createSession, deleteSession} from '../controllers/sessionController.js'
 import expressJwt from 'express-jwt';
 import jwt from 'jsonwebtoken';
 
@@ -22,8 +22,13 @@ export const respond = (req, res) => {
     });
 }
 
+export const deserialize = (req, res, next) => {
+    deleteSession(req.user, () => {
+      next();
+    });
+}
+
 export const serialize = (req, res, next) => {  
-    console.log(req.user);
     createSession(req.user, user => {
         req.user = {
             id: user._id

@@ -1,12 +1,12 @@
-import { getUsers, getUserById, createUser, logout} from "../controllers/userController.js";
+import { getUsers, getUserById, createUser, logout, getUserByUserName} from "../controllers/userController.js";
 import express from 'express'
 import passport, { Passport } from "passport";
-import { generateToken, authenticate, respond, serialize } from "./routeUtility.js";
+import { generateToken, authenticate, respond, serialize, deserialize } from "./routeUtility.js";
 
 const router = express.Router()
 
 router.get('/loggedin', (req, res) => {
-	res.send(req.isAuthenticated());
+	res.send(authenticate);
 });
 
 router.post('/login', passport.authenticate(  
@@ -14,11 +14,11 @@ router.post('/login', passport.authenticate(
 	  session: false
 }), serialize, generateToken, respond);
 
-router.get('/logout', authenticate, logout);
+router.get('/logout', authenticate, deserialize, logout);
 router.get('/', authenticate, getUsers);
 
-router.route('/').post(createUser);
-router.route('/:id').get(getUserById);
-router.route('/:username').get(getUserById);
+router.post('/', createUser);
+router.get('/:id', authenticate, getUserById);
+router.get('/:username', authenticate, getUserByUserName);
 
 export default router
