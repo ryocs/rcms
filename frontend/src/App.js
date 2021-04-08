@@ -4,40 +4,35 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect,
+  useHistory,
+  BrowserRouter
 } from "react-router-dom";
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from "./containers/Login/Login.js";
-import Dashboard from './containers/Dashboard/Dashboard.js';
-
-async function requireAuth(nextState, replace, next) {
-  const res = await axios.get('/api/users/loggedin');
-  console.log(res);
-  if (!Cookies.get("connect.sid")) {
-    replace({
-      pathname: "/login",
-      state: {nextPathname: nextState.location.pathname}
-    });
-  } else {
-    console.log("HI", Cookies.get());
-  }
-  next();
-}
+import Login from "./components/Login/Login.js";
+import Dashboard from './components/Dashboard/Dashboard.js';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.js';
+import {isExpired} from "./Utility/userUtility";
+import history from './Utility/history.js';
 
 const App = () => {
 
   useEffect(() => {
-    Cookies.set("test", 1);
-    console.log(Cookies.get());
-  });
+    if (isExpired()) {
+
+    } else {
+      history.push('/dashboard');
+    }
+  })
 
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
-        <Route path="/dashboard" component={Dashboard} />
+        <PrivateRoute authed={true} path="/dashboard" component={Dashboard}/>
       </Switch>
     </Router>
   )

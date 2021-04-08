@@ -1,6 +1,6 @@
 import User from '../models/usersModel.js'
 import asyncHandler from 'express-async-handler'
-import passport from 'passport';
+import { deleteSession } from './sessionController.js';
 
 export const getUsers = asyncHandler(async(req, res) => {
     const users = await User.find({})
@@ -45,9 +45,9 @@ export const createUser = asyncHandler(async(req, res) => {
 
 export const logout = asyncHandler(async(req, res) => {
     if (req.user) {
-		req.session.destroy()
-		res.clearCookie('connect.sid')
-		return res.json({ msg: 'logging you out' })
+        deleteSession(req.user,() => {
+            return res.json({ msg: 'logging you out' })
+        });
 	} else {
 		return res.json({ msg: 'no user to log out!' })
 	}
