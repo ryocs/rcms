@@ -9,5 +9,8 @@
     "dev": "concurrently \"npm start\" \"npm run client\""
   },
   "author": "ryocs",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.0.1"
+  }
 }
