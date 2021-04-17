@@ -23,10 +23,13 @@ export const respond = (req, res) => {
 }
 
 export const serialize = (req, res, next) => {  
-    console.log(req.user);
     createSession(req.user, user => {
         req.user = {
-            id: user._id
+            id: user._id,
+            firstName: user.firstName,
+            email: user.email,
+            userName: user.userName,
+            secondName: user.secondName
         };
         next();
     });

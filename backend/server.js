@@ -13,18 +13,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }), express.json());
-/*app.use(
-	session({
-		secret: 'this-inzi-tiny-string',
-		store: new MongoStore({ mongoUrl: "mongodb://127.0.0.1:27017/rcms" }),
-		resave: false,
-		saveUninitialized: false,
-		cookie: {httpOnly: false}
-	})
-);*/
 
-
-//app.use(passport.initialize());
 app.use(passport.initialize());
 app.use('/api/users', userRoutes);
 

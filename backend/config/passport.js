@@ -3,7 +3,6 @@ import passport from 'passport';
 import strategy from './localStrategy.js';
 
 passport.serializeUser((user, done) => {
-	console.log(user);
 	done(null, { _id: user._id })
 })
 

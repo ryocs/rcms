@@ -5,8 +5,8 @@ import { generateToken, authenticate, respond, serialize } from "./routeUtility.
 
 const router = express.Router()
 
-router.get('/loggedin', (req, res) => {
-	res.send(req.isAuthenticated());
+router.get('/loggedin', authenticate, (req, res) => {
+	res.send(true);
 });
 
 router.post('/login', passport.authenticate(  
