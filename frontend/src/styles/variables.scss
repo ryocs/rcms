@@ -1,7 +1,28 @@
-$color-primary: rgb(55, 219, 156);
-$color-primary-fg: white;
+$color-bg: hsl(0, 0%, 100%);
+$color-fg: hsl(0, 0%, 12%);
 
-$width-sm: 700px;
-$width-md: 1000px;
-$width-lg: 1600px;
-$width-xl: 1920px;
+
+$color-primary: hsl(162, 69%, 63%);
+$color-primary-dark: hsl(170, 49%, 53%);
+$color-primary-darker: hsl(170, 42%, 40%);
+$color-primary-fg: hsl(0, 0%, 18%);
+$color-primary-darke-fg: hsl(0, 0%, 95%);
+
+$color-shadow: hsla(0, 0%, 27%, 0.2);
+$color-border: hsl(0, 0%, 70%);
+
+$color-error: hsl(0, 96%, 73%);
+$color-error-fg: hsl(0, 0%, 100%);
+
+$r-sm: 5px;
+$r-md: 10px;
+$r-lg: 15px;
+$r-xl: 20px;
+
+$r-50: 50%;
+$r-100px: 100px;
+
+$screen-sm: 500px;
+$screen-md: 800px;
+$screen-lg: 1000px;
+$screen-xl: 1200px;
