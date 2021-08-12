@@ -20,6 +20,7 @@
       "es2018",
       "dom"
     ],
+    "checkJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noUncheckedIndexedAccess": false

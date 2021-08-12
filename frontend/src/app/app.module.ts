@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,13 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbSidebarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

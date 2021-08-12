@@ -1,4 +1,9 @@
-<h1>{{title}}</h1>
-<p>
-</p>
-<router-outlet></router-outlet>
+<nb-layout>
+  <nb-sidebar>
+    <nb-sidebar-header>RCMS</nb-sidebar-header>
+    <nb-menu [items]="items">
+    </nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>Layout Content</nb-layout-column>
+</nb-layout>
