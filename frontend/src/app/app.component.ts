@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
+import {NbMenuItem, NbSidebarService, NbSidebarState} from "@nebular/theme";
 
 @Component({
   selector: 'app-root',
@@ -35,5 +35,12 @@ export class AppComponent {
       icon: 'power-outline',
     },
   ];
+
+  constructor(private sidebarService: NbSidebarService) {
+  }
+
+  public toggle = () => {
+    this.sidebarService.toggle(true, 'mainSideBar');
+  }
 
 }

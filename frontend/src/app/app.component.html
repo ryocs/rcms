@@ -1,9 +1,12 @@
 <nb-layout>
-  <nb-sidebar>
-    <nb-sidebar-header>RCMS</nb-sidebar-header>
+  <nb-layout-header></nb-layout-header>
+
+  <nb-sidebar tag="mainSideBar" start state="compacted" (mouseenter)="toggle()" (mouseleave)="toggle()">
     <nb-menu [items]="items">
     </nb-menu>
   </nb-sidebar>
 
-  <nb-layout-column>Layout Content</nb-layout-column>
+  <nb-layout-column>
+    <button nbButton label="HI" (click)="toggle()">HI</button>
+  </nb-layout-column>
 </nb-layout>
